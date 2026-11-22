@@ -1,0 +1,157 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#include <windows.h>
+#include <conio.h>
+
+using namespace std;
+
+// ==== MẬT KHẨU MỚI: 1007 (Ngày 10/07) ====
+const string CORRECT_PASSWORD = "1007";
+
+void clearScreen() {
+    system("cls");
+}
+
+void delay(int ms) {
+    Sleep(ms);
+}
+
+void setColor(int color) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
+}
+
+void showIntro() {
+    clearScreen();
+    setColor(14);
+    cout << endl << endl;
+    cout << "        ✨ ✨ ✨ CHAO MUNG ✨ ✨ ✨" << endl << endl;
+    setColor(11);
+    cout << "          HAPPY BIRTHDAY! 🎂" << endl;
+    setColor(7);
+    delay(1500);
+}
+
+bool inputPassword() {
+    clearScreen();
+    setColor(15);
+    cout << endl << "          ==== NHAP MAT KHAU ====" << endl << endl;
+    cout << "        Mat khau gom 4 chu so: ";
+    
+    string pass = "";
+    for (int i = 0; i < 4; i++) {
+        char c = _getch();
+        if (c >= '0' && c <= '9') {
+            pass += c;
+            cout << "*";
+        } else i--;
+    }
+    
+    cout << endl << endl;
+    if (pass == CORRECT_PASSWORD) {
+        setColor(10);
+        cout << "          ✔ Mat khau dung! ✔" << endl;
+        setColor(7);
+        delay(1000);
+        return true;
+    } else {
+        setColor(12);
+        cout << "          ✖ Mat khau sai! Thu lai..." << endl;
+        setColor(7);
+        delay(1500);
+        return false;
+    }
+}
+
+void showCake() {
+    clearScreen();
+    setColor(14);
+    cout << endl << endl;
+    cout << "              ★ ★ ★ ★ ★" << endl;
+    cout << "              | | | | |" << endl;
+    setColor(12);
+    cout << "          ~~~~~~~~~~~~~~~~~~~" << endl;
+    setColor(14);
+    cout << "         |      HAPPY       |" << endl;
+    cout << "         |    BIRTHDAY! 🎂  |" << endl;
+    setColor(6);
+    cout << "          ~~~~~~~~~~~~~~~~~~~" << endl;
+    cout << "           \\_______________/" << endl << endl;
+    setColor(11);
+    cout << "          ✨ Nhan Enter de thoi nen ✨" << endl;
+    setColor(7);
+    cin.get();
+}
+
+void blowCandle() {
+    clearScreen();
+    setColor(14);
+    cout << endl << endl;
+    cout << "              . . . . ." << endl;
+    cout << "              | | | | |" << endl;
+    setColor(12);
+    cout << "          ~~~~~~~~~~~~~~~~~~~" << endl;
+    setColor(14);
+    cout << "         |    CHUC BAN      |" << endl;
+    cout << "         |   LUON VUI VE!   |" << endl;
+    setColor(6);
+    cout << "          ~~~~~~~~~~~~~~~~~~~" << endl;
+    cout << "           \\_______________/" << endl << endl;
+    setColor(10);
+    cout << "          ✨✨✨ NEN DA DUOC THOI ✨✨✨" << endl;
+    setColor(7);
+    delay(1500);
+}
+
+void fireWorks() {
+    clearScreen();
+    setColor(14);
+    cout << endl << endl;
+    cout << "          ==== PHAP HOA KHOE! ====" << endl << endl;
+    
+    srand(time(0));
+    char symbol[] = { '*', '★', '✦', '✧', '☆' };
+    int colors[] = { 14, 12, 10, 11, 13, 9, 15 };
+    
+    for (int loop = 0; loop < 25; loop++) {
+        int x = rand() % 55;
+        int c = colors[rand() % 7];
+        int s = rand() % 5;
+        
+        setColor(c);
+        for (int i = 0; i < x; i++) cout << " ";
+        cout << symbol[s] << endl;
+        setColor(7);
+        delay(150);
+    }
+    setColor(7);
+}
+
+void showMessage() {
+    clearScreen();
+    setColor(13);
+    cout << endl << endl << endl;
+    cout << "      ❤️  CHUC MOT NGAY SINH NHAT TRON VEN ❤️" << endl << endl;
+    setColor(11);
+    cout << "      ✨ Luon khoe manh - Luon vui ve ✨" << endl;
+    cout << "      ✨ Mong dieu tot dep se den voi ban ✨" << endl << endl;
+    setColor(14);
+    cout << "      💖 Happy Birthday - 10/07 💖" << endl << endl;
+    setColor(7);
+    system("pause");
+}
+
+int main() {
+    showIntro();
+    
+    while (!inputPassword()) {}
+    
+    showCake();
+    blowCandle();
+    fireWorks();
+    showMessage();
+    
+    return 0;
+}
